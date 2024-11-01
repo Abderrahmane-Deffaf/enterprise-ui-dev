@@ -14,12 +14,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
-      - name: running the action
-        uses: actions/cache@v3
-        id: npm-cache
         with:
-          path: ~/.npm # 👀
-          key: npm-${{ hashFiles('**/package-lock.json') }}
+          node-version: 18
+          cache: 'npm'
       - run: npm ci
       - run: npm test
   build:
@@ -29,11 +26,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
-      - name: running the action
-        uses: actions/cache@v3
-        id: npm-cache
         with:
-          path: ~/.npm # 👀
-          key: npm-${{ hashFiles('**/package-lock.json') }}
+          node-version: 18
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
